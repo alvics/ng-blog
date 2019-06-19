@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$ng-blog-app-primary: mat-palette($mat-blue-grey);
+$ng-blog-app-accent: mat-palette($mat-red, A200);
+
+$ng-blog-app-warn: mat-palette($mat-red);
+
+$ng-blog-app-theme: mat-light-theme(
+  $ng-blog-app-primary,
+  $ng-blog-app-accent,
+  $ng-blog-app-warn
+);
+
+@include angular-material-theme($ng-blog-app-theme);

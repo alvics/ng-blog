@@ -23,13 +23,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss", "src/app/theme.scss"],
             "scripts": []
           },
           "configurations": {
@@ -77,6 +72,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ng-blog"
 }
