@@ -5,6 +5,6 @@ export class Post {
     content: string;
     image: string;
     published: Date;
-    id: any;
+    id?: string;
 
 }

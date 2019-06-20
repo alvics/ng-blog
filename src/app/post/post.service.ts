@@ -8,15 +8,12 @@ import {
 
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
   postCollection: AngularFirestoreCollection<Post>;
   postDoc: AngularFirestoreDocument<Post>;
-   
-   
 
   constructor(private afs: AngularFirestore) {
     this.postCollection = this.afs.collection('posts', ref =>
@@ -41,5 +38,19 @@ export class PostService {
     return this.postDoc.valueChanges();
   }
 
+  create(data: Post) {
+    this.postCollection.add(data);
+  }
 
+  getDoc(id: string) {
+    return this.afs.doc<Post>(`posts/${id}`);
+  }
+
+  delete(id: string) {
+    return this.getDoc(id).delete();
+  }
+
+  update(id: string, formData) {
+    return this.getDoc(id).update(formData);
+  }
 }
