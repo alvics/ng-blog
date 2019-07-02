@@ -10,11 +10,14 @@ import { Post } from '../post';
 })
 export class PostListComponent implements OnInit {
   posts: Observable<Post[]>;
+  image: Observable<string | null>;
 
   constructor(private postservice: PostService) {}
 
   ngOnInit() {
     this.posts = this.postservice.getPosts();
-    console.log(this);
+    // console.log(this.posts && this.postservice);
   }
+
+  delete
 }

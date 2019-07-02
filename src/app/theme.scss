@@ -2,7 +2,7 @@
 
 @include mat-core();
 
-$ng-blog-app-primary: mat-palette($mat-blue-grey);
+$ng-blog-app-primary: mat-palette($mat-blue-grey, 900);
 $ng-blog-app-accent: mat-palette($mat-red, A200);
 
 $ng-blog-app-warn: mat-palette($mat-red);

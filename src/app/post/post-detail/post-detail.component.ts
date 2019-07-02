@@ -15,13 +15,11 @@ export class PostDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService,
-    
+    private postService: PostService
   ) {}
 
   ngOnInit() {
     this.getPostId();
-    console.log(this);
   }
 
   getPostId() {

@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class PostDashboardComponent implements OnInit {
   title: string;
-  image: string = null;
+  image: Observable<string | null>;
   content: string;
 
   buttonText: string = 'Create Post';
@@ -60,6 +60,9 @@ export class PostDashboardComponent implements OnInit {
         .snapshotChanges()
         .pipe(finalize(() => (this.downloadURL = fileRef.getDownloadURL())))
         .subscribe();
+
+      const ref = this.storage.ref(`posts/${file.name}`);
+      this.image = ref.getDownloadURL();
     }
   }
 }

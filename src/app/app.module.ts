@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -17,7 +17,7 @@ import { PostModule } from './post/post.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/blog', pathMatch: 'full' },
-  { path: '', loadChildren: './post/post.module#PostModule'}
+  { path: '', loadChildren: './post/post.module#PostModule' }
 ];
 
 @NgModule({
@@ -35,6 +35,7 @@ const routes: Routes = [
     PostModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
