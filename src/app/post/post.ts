@@ -3,7 +3,7 @@ export class Post {
   author: string;
   authorId: string;
   content: string;
-  image: any;
+  // image: any;
   published: Date;
   id?: string;
 }

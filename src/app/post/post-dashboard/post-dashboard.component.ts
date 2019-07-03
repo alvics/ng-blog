@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import { PostService } from './../post.service';
 import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
+// import { AngularFireStorage } from '@angular/fire/storage';
+// import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-dashboard',
@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class PostDashboardComponent implements OnInit {
   title: string;
-  image: Observable<string | null>;
+  // image: Observable<string | null>;
   content: string;
 
   buttonText: string = 'Create Post';
@@ -22,9 +22,9 @@ export class PostDashboardComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private postService: PostService,
-    private storage: AngularFireStorage
-  ) {}
+    private postService: PostService
+  ) // private storage: AngularFireStorage
+  {}
 
   ngOnInit() {}
 
@@ -33,7 +33,7 @@ export class PostDashboardComponent implements OnInit {
       author: this.auth.authState.displayName || this.auth.authState.email,
       authorId: this.auth.currentUserId,
       content: this.content,
-      image: this.image,
+      // image: this.image,
       published: new Date(),
       title: this.title
     };
@@ -44,25 +44,29 @@ export class PostDashboardComponent implements OnInit {
     setTimeout(() => (this.buttonText = 'Create Post'), 3000);
   }
 
-  uploadImage(event) {
-    const file = event.target.files[0];
-    const path = `posts/${file.name}`;
-    console.log(event.target.files);
+  /* Work out Image display??
+images are loading into firestore, 
+*/
 
-    if (file.type.split('/')[0] !== 'image') {
-      return alert('Upload image files only!');
-    } else {
-      const task = this.storage.upload(path, file);
-      const fileRef = this.storage.ref(path);
-      this.uploadPercent = task.percentageChanges();
+  // uploadImage(event) {
+  //   const file = event.target.files[0];
+  //   const path = `posts/${file.name}`;
+  //   console.log(event.target.files);
 
-      task
-        .snapshotChanges()
-        .pipe(finalize(() => (this.downloadURL = fileRef.getDownloadURL())))
-        .subscribe();
+  //   if (file.type.split('/')[0] !== 'image') {
+  //     return alert('Upload image files only!');
+  //   } else {
+  //     const task = this.storage.upload(path, file);
+  //     const fileRef = this.storage.ref(path);
+  //     this.uploadPercent = task.percentageChanges();
 
-      const ref = this.storage.ref(`posts/${file.name}`);
-      this.image = ref.getDownloadURL();
-    }
-  }
+  //     task
+  //       .snapshotChanges()
+  //       .pipe(finalize(() => (this.downloadURL = fileRef.getDownloadURL())))
+  //       .subscribe();
+
+  // const ref = this.storage.ref(`posts/${file.name}`);
+  // this.image = ref.getDownloadURL();
+  //   }
+  // }
 }
