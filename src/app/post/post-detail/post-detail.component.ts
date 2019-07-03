@@ -1,6 +1,7 @@
+import { AuthService } from './../../core/auth.service';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Post } from '../post';
 
@@ -12,10 +13,13 @@ import { Post } from '../post';
 export class PostDetailComponent implements OnInit {
   post: Post;
   timestampsInSnapshots: false;
+  edit: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    public auth: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -27,5 +31,21 @@ export class PostDetailComponent implements OnInit {
     return this.postService
       .getPostData(id)
       .subscribe(data => (this.post = data));
+  }
+
+  updatePost() {
+    const formData = {
+      title: this.post.title,
+      content: this.post.content
+    };
+    const id = this.route.snapshot.paramMap.get('id');
+    this.postService.update(id, formData);
+    this.edit = false;
+  }
+
+  delete() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.postService.delete(id);
+    this.router.navigate(['/blog']);
   }
 }

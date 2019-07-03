@@ -45,7 +45,7 @@ export class PostDashboardComponent implements OnInit {
   }
 
   /* Work out Image display??
-images are loading into firestore, 
+images are uploading into firestore, 
 */
 
   // uploadImage(event) {

@@ -1,7 +1,54 @@
-<div class="container" *ngIf="post">
-  <h3>{{ post.title }}</h3>
-  <p>{{ post.content }}</p>
-  <p>
-    posted by {{ post.author }} &bull; {{ post.published.toDate() | date: "medium" }}
-  </p>
-</div>
+<ng-container *ngIf="post">
+  <div [hidden]="!edit">
+    <mat-card>
+      <h2>Update Post</h2>
+      <mat-form-field>
+        <input matInput placeholder="Post Title" [(ngModel)]="post.title" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="Post Content"
+          [(ngModel)]="post.content"
+          rows="10"
+        ></textarea>
+      </mat-form-field>
+      <br />
+      <button mat-raised-button color="accent" (click)="updatePost()">
+        Save
+      </button>
+      <button mat-raised-button (click)="edit = false">
+        Cancel
+      </button>
+    </mat-card>
+  </div>
+
+  <div [hidden]="edit">
+    <mat-card>
+      <mat-card-content routerLink="{{ post.id }}">
+        <!-- <img [src]="post.image" alt="{{ post.title }}" /> -->
+        <h2>{{ post.title }}</h2>
+        <!-- <p>{{ post | json }}</p> -->
+        <p>{{ post.content }}</p>
+        <p>
+          <small>
+            Posted by: {{ post.author }}
+            {{ post.published.toDate() | date: 'mediumDate' }}</small
+          >
+        </p>
+      </mat-card-content>
+      <mat-card-actions
+        align="end"
+        *ngIf="auth.currentUserId === post.authorId"
+      >
+        <button mat-icon-button (click)="edit = true">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="delete(post.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-container>
