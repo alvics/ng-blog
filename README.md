@@ -1,17 +1,7 @@
-# NgBlog
+# Angular 8 CRUD app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+### Angular 8, firebase, firestore, Angular material, create, read, update and delete blog posts application.
 
-## Development server
+### User authentication, login to use crud operations.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-
+## View app [here](https://fire-blog-2.firebaseapp.com)
